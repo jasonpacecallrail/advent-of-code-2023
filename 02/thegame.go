@@ -10,38 +10,24 @@ import (
 	"unicode"
 )
 
-func NumberWords(s string) string {
-	if strings.HasPrefix(s, "one") {
-		return "1"
-	}
-	if strings.HasPrefix(s, "two") {
-		return "2"
-	}
-	if strings.HasPrefix(s, "three") {
-		return "3"
-	}
-	if strings.HasPrefix(s, "four") {
-		return "4"
-	}
-	if strings.HasPrefix(s, "five") {
-		return "5"
-	}
-	if strings.HasPrefix(s, "six") {
-		return "6"
-	}
-	if strings.HasPrefix(s, "seven") {
-		return "7"
-	}
-	if strings.HasPrefix(s, "eight") {
-		return "8"
-	}
-	if strings.HasPrefix(s, "nine") {
-		return "9"
-	}
-	return ""
+type Bag struct {
+	red, green, blue int
 }
 
-func ExtractCoordinate(s string) int {
+type Round struct {
+	red, green, blue int
+}
+
+type Game struct {
+	id              int
+	one, two, three Round
+}
+
+func ParseGame(s string) Game {
+	split = strings.Split(s, ":")
+}
+
+func GamePossible(s string, b Bag) int {
 	first := ""
 	last := ""
 	for i, r := range s {
@@ -66,9 +52,13 @@ func ExtractCoordinate(s string) int {
 	return coordinate
 }
 
+func RoundPossible(s string)
+
 func main() {
 
-	calibrationSum := 0
+	thisBag := Bag{12, 13, 14}
+
+	roundSum := 0
 
 	content, error := os.Open("input.txt")
 
@@ -82,8 +72,8 @@ func main() {
 	reader := bufio.NewScanner(content)
 
 	for reader.Scan() {
-		calibrationSum += ExtractCoordinate(reader.Text())
+		roundSum += GamePossible(reader.Text(), thisBag)
 	}
 	//Print the string str
-	fmt.Println(calibrationSum)
+	fmt.Println(roundSum)
 }
